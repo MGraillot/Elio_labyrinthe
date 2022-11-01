@@ -1,3 +1,4 @@
+## MAIN ROBOT LABYRINTHE ELIOBOT ##
 import neopixel
 import board
 import time, random
