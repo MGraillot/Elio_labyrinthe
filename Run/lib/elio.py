@@ -5,6 +5,8 @@ import pwmio
 from digitalio import DigitalInOut, Direction
 from analogio import AnalogIn
 
+pixels = neopixel.NeoPixel(board.NEOPIXEL, 1, brightness=0.03, auto_write=False, pixel_order=neopixel.GRB)
+
 # motorAIN1 = DigitalInOut(board.IO36)
 # motorAIN2 = DigitalInOut(board.IO38)
 # motorBIN1 = DigitalInOut(board.IO35)
@@ -15,18 +17,27 @@ from analogio import AnalogIn
 # motorBIN1.direction = Direction.OUTPUT
 # motorBIN2.direction = Direction.OUTPUT
 
-# Attribution bouton START #
-#boutonStart = DigitalInOut(board.IO14)
-
 # Attribution PIN capteur infraRouge #
 obstacleCMD = DigitalInOut(board.IO33)
 obstacleCMD.direction = Direction.OUTPUT
+
+#Attribution bouton Start #
+boutonStart = DigitalInOut(board.IO14)
+boutonStart.direction = Direction.OUTPUT
 
 # Attribution par capteurs #
 obstacleInput = [AnalogIn(board.IO4), #Gauche
                  AnalogIn(board.IO5), #Centre
                  AnalogIn(board.IO6), #Droite
                  AnalogIn(board.IO7)] #Derriere
+
+# Attribution capteur sous robot (suiveur de ligne) #
+lineSensor1 = AnalogIn(board.IO8)
+lineSensor2 = AnalogIn(board.IO9)
+lineSensor3 = AnalogIn(board.IO10)
+lineSensor4 = AnalogIn(board.IO11)
+lineSensor5 = AnalogIn(board.IO12)
+
 
 motorAIN1 = pwmio.PWMOut(board.IO36, frequency = 50)
 motorAIN2 = pwmio.PWMOut(board.IO38, frequency = 50)
@@ -164,7 +175,6 @@ def esquiveDerriere(val1):
 # Fonction de détection d'obstacle #
 def obstacle(obstaclePosition): #(obstacleCentre):
     
-    time.sleep(0.01)
     obstaclePosition = obstaclePosition
     
     ledAmbient = 0
@@ -184,6 +194,23 @@ def obstacle(obstaclePosition): #(obstacleCentre):
     print('Valeur-2 capteur : ', obstacleInput[obstaclePosition].value)
     
     diff = ledObstacle - ledAmbient
-    print('Difference : ', diff)
-
+#     print('Difference : ', diff)
+    
     return(diff)
+
+def timeStart():
+    pixels[0] = (255,255,0)
+    pixels.show()
+    time.sleep(1)
+    pixels[0] = (255,0,0)
+    pixels.show()
+    time.sleep(1)
+    pixels[0] = (255,0,255)
+    pixels.show()
+    time.sleep(1)
+    pixels[0] = (0,255,0)
+    pixels.show()
+    time.sleep(1)
+    pixels[0] = (0,255,255)
+    pixels.show()
+    time.sleep(1)
