@@ -5,6 +5,8 @@ import pwmio
 from digitalio import DigitalInOut, Direction
 from analogio import AnalogIn
 
+pixels = neopixel.NeoPixel(board.NEOPIXEL, 1, brightness=0.03, auto_write=False, pixel_order=neopixel.GRB)
+
 # motorAIN1 = DigitalInOut(board.IO36)
 # motorAIN2 = DigitalInOut(board.IO38)
 # motorBIN1 = DigitalInOut(board.IO35)
@@ -187,3 +189,20 @@ def obstacle(obstaclePosition): #(obstacleCentre):
     print('Difference : ', diff)
 
     return(diff)
+  
+ def timeStart():
+    pixels[0] = (255,255,0)
+    pixels.show()
+    time.sleep(1)
+    pixels[0] = (255,0,0)
+    pixels.show()
+    time.sleep(1)
+    pixels[0] = (255,0,255)
+    pixels.show()
+    time.sleep(1)
+    pixels[0] = (0,255,0)
+    pixels.show()
+    time.sleep(1)
+    pixels[0] = (0,255,255)
+    pixels.show()
+    time.sleep(1) 
