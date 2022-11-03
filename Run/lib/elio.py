@@ -194,11 +194,19 @@ def obstacle(obstaclePosition): #(obstacleCentre):
     print('Valeur-2 capteur : ', obstacleInput[obstaclePosition].value)
     
     diff = ledObstacle - ledAmbient
+<<<<<<< HEAD
 #     print('Difference : ', diff)
     
     return(diff)
 
 def timeStart():
+=======
+    print('Difference : ', diff)
+
+    return(diff)
+  
+ def timeStart():
+>>>>>>> 870f155722a49ae54ebf97155148a81fa3e8b773
     pixels[0] = (255,255,0)
     pixels.show()
     time.sleep(1)
@@ -213,4 +221,8 @@ def timeStart():
     time.sleep(1)
     pixels[0] = (0,255,255)
     pixels.show()
+<<<<<<< HEAD
     time.sleep(1)
+=======
+    time.sleep(1) 
+>>>>>>> 870f155722a49ae54ebf97155148a81fa3e8b773
